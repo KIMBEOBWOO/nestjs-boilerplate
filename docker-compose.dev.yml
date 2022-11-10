@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  # Groomer Note Talk Server
+  # Nest.js Server container
   nestjs-app:
     container_name: nestjs-app
     restart: always
@@ -34,6 +34,17 @@ services:
       - nestjs-app
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - network-backend
+
+  # Local PostgreSQL database container
+  db-postgres:
+    container_name: db-postgres
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
     networks:
       - network-backend
 
