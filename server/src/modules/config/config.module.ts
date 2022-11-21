@@ -14,6 +14,7 @@ import configuration from './configuration';
   imports: [
     ConfigModule.forRoot({
       cache: true,
+      isGlobal: true,
       envFilePath: `envs/.env.${process.env.NODE_ENV}`, // set env file path
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
