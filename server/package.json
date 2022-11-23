@@ -20,10 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "ci": "yarn install --immutable --immutable-cache --check-cache",
-    "typeorm": "env-cmd -f ./envs/.env.development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "migration:generate": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:generate",
-    "migration:create": "yarn run typeorm -- migration:create",
-    "migration:run": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:run",
+    "typeorm:dev": "env-cmd -f ./envs/.env.development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:prod": "env-cmd -f ./envs/.env.production ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:revert": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:revert"
   },
   "dependencies": {
