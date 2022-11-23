@@ -19,12 +19,18 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "ci": "yarn install --immutable --immutable-cache --check-cache"
+    "ci": "yarn install --immutable --immutable-cache --check-cache",
+    "typeorm": "env-cmd -f ./envs/.env.development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:generate": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:generate",
+    "migration:create": "yarn run typeorm -- migration:create",
+    "migration:run": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:run",
+    "migration:revert": "yarn run typeorm -- --dataSource=src/modules/database/data-sources/postgres.datasource.ts migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/mapped-types": "^1.2.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^9.0.1",
     "joi": "^17.7.0",
@@ -45,6 +51,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
