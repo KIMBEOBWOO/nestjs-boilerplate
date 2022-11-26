@@ -15,7 +15,7 @@ import { REDIS_CACHE_MANAGER } from './symbols/redis.symbol';
             host: configService.get('redisHost'),
             port: configService.get('redisPort'),
           },
-          password: 'wjdrms15!',
+          password: configService.get('redisPassword'),
           ttl: 10,
         }),
       inject: [ConfigService<IsRedisConfig>],
