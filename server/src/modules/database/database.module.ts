@@ -1,11 +1,10 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IsPostgresDatabaseConfig } from '../config/interfaces/postgres-database.config.interface';
 import { Post } from '../post/entities/post.entity';
 import { POSTGRES_CONNECTION } from './const/postgres-connection.const';
 
-@Global()
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({

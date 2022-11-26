@@ -7,8 +7,6 @@ async function bootstrap() {
 
   await app.listen(process.env.SERVER_PORT || 3000);
 
-  console.log(__dirname);
-
   Logger.log(
     `Nest.js is running on Port [${process.env.SERVER_PORT}], using ENV mode [${process.env.NODE_ENV}]`,
   );
