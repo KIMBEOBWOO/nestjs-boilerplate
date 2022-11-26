@@ -1,10 +1,14 @@
 import * as Joi from 'joi';
 import { IsCacheConfig } from './interfaces/cache.config.interface';
 import { IsPostgresDatabaseConfig } from './interfaces/postgres-database.config.interface';
+import { IsRedisConfig } from './interfaces/redis.config';
 
 export default () => {
   // joi validation target schema
-  const schema = Joi.object<IsPostgresDatabaseConfig & IsCacheConfig, true>({
+  const schema = Joi.object<
+    IsPostgresDatabaseConfig & IsCacheConfig & IsRedisConfig,
+    true
+  >({
     postgresHost: Joi.string().required(),
     postgresPort: Joi.number().required(),
     postgresUserName: Joi.string().required(),
@@ -13,6 +17,10 @@ export default () => {
 
     cacheHost: Joi.string().required(),
     cachePort: Joi.number().required(),
+
+    // reids config
+    redisHost: Joi.string().required(),
+    redisPort: Joi.number().required(),
   });
 
   // validate target values
@@ -25,6 +33,9 @@ export default () => {
 
     cacheHost: process.env.CACHE_HOST,
     cachePort: process.env.CACHE_PORT,
+
+    redisHost: process.env.REDIS_HOST,
+    redisPort: process.env.REDIS_PORT,
   };
 
   const { error, value } = schema.validate(config);
