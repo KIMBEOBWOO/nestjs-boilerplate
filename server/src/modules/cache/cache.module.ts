@@ -4,10 +4,19 @@ import { redisStore } from 'cache-manager-redis-store';
 import { IsRedisConfig } from '../config/interfaces/redis.config';
 import { REDIS_CACHE_MANAGER } from './symbols/redis.symbol';
 
+/**
+ * Cache Module
+ * The module is a global module with global reference.
+ * Various stores such as redis and mongo can be registered as providers and expanded.
+ */
 @Global()
 @Module({
   providers: [
     {
+      /**
+       * how to use
+       * - @Inject(REDIS_CACHE_MANAGER) cacheManager: Cache
+       */
       provide: REDIS_CACHE_MANAGER,
       useFactory: async (configService: ConfigService<IsRedisConfig>) =>
         await redisStore({
