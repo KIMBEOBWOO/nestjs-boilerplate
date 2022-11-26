@@ -2,13 +2,13 @@ import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { redisStore } from 'cache-manager-redis-store';
 import { IsRedisConfig } from '../config/interfaces/redis.config';
-import { REDIS_TOKEN } from './symbols/redis.symbol';
+import { REDIS_CACHE_MANAGER } from './symbols/redis.symbol';
 
 @Global()
 @Module({
   providers: [
     {
-      provide: REDIS_TOKEN,
+      provide: REDIS_CACHE_MANAGER,
       useFactory: async (configService: ConfigService<IsRedisConfig>) =>
         await redisStore({
           socket: {
@@ -21,6 +21,6 @@ import { REDIS_TOKEN } from './symbols/redis.symbol';
       inject: [ConfigService<IsRedisConfig>],
     },
   ],
-  exports: [REDIS_TOKEN],
+  exports: [REDIS_CACHE_MANAGER],
 })
 export class ServerCacheModule {}

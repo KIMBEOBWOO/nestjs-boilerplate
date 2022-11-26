@@ -1,8 +1,8 @@
-import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cache } from 'cache-manager';
 import { Repository } from 'typeorm';
-import { REDIS_TOKEN } from '../cache/symbols/redis.symbol';
+import { REDIS_CACHE_MANAGER } from '../cache/symbols/redis.symbol';
 import { POSTGRES_CONNECTION } from '../database/const/postgres-connection.const';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -14,7 +14,7 @@ export class PostService {
     @InjectRepository(Post, POSTGRES_CONNECTION)
     private readonly postRepository: Repository<Post>,
 
-    @Inject(REDIS_TOKEN) private cacheManager: Cache,
+    @Inject(REDIS_CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async create(req: Request, createPostDto: CreatePostDto) {
