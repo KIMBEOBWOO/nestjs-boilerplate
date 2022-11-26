@@ -1,11 +1,12 @@
 import { BullModule } from '@nestjs/bull';
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { IsRedisConfig } from '../config/interfaces/redis.config';
 
+@Global()
 @Module({
   imports: [
-    // import Bull Module
+    // setup Root Bull Module
     BullModule.forRootAsync({
       useFactory: async (
         configService: ConfigService<IsRedisConfig, true>,
@@ -28,6 +29,12 @@ import { IsRedisConfig } from '../config/interfaces/redis.config';
       }),
       inject: [ConfigService<IsRedisConfig, true>],
     }),
+
+    // setup Queue
+    BullModule.registerQueue({
+      name: 'Test',
+    }),
   ],
+  exports: [BullModule],
 })
 export class QueueModule {}

@@ -1,5 +1,7 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Queue } from 'bull';
 import { Cache } from 'cache-manager';
 import { Repository } from 'typeorm';
 import { REDIS_CACHE_MANAGER } from '../cache/symbols/redis.symbol';
@@ -15,10 +17,21 @@ export class PostService {
     private readonly postRepository: Repository<Post>,
 
     @Inject(REDIS_CACHE_MANAGER) private cacheManager: Cache,
+
+    @InjectQueue('Test') private readonly queue: Queue,
   ) {}
 
   async create(req: Request, createPostDto: CreatePostDto) {
     await this.cacheManager.set('test', new Date(Date.now()).toLocaleString());
+
+    await this.queue.add(
+      {
+        date: new Date().toLocaleString(),
+      },
+      {
+        delay: 30000,
+      },
+    );
 
     return this.postRepository.save({
       title: 'test',
@@ -28,6 +41,8 @@ export class PostService {
 
   async findAll() {
     console.log(await this.cacheManager.get('test'));
+
+    console.log(await this.queue.getDelayed());
     return this.postRepository.find({});
   }
 
