@@ -15,6 +15,7 @@ import { REDIS_TOKEN } from './symbols/redis.symbol';
             host: configService.get('redisHost'),
             port: configService.get('redisPort'),
           },
+          password: 'wjdrms15!',
           ttl: 10,
         }),
       inject: [ConfigService<IsRedisConfig>],

@@ -5,4 +5,5 @@
 export interface IsRedisConfig {
   readonly redisHost: string; // redis config host
   readonly redisPort: number; // redis config port (default 6379)
+  readonly redisPassword: string; // redis config password (with docker)
 }

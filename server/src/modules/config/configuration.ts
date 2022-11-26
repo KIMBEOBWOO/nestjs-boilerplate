@@ -21,6 +21,7 @@ export default () => {
     // reids config
     redisHost: Joi.string().required(),
     redisPort: Joi.number().required(),
+    redisPassword: Joi.string().required(),
   });
 
   // validate target values
@@ -36,6 +37,7 @@ export default () => {
 
     redisHost: process.env.REDIS_HOST,
     redisPort: process.env.REDIS_PORT,
+    redisPassword: process.env.REDIS_PASSWORD,
   };
 
   const { error, value } = schema.validate(config);
