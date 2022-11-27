@@ -30,7 +30,7 @@ import { IsRedisConfig } from '../config/interfaces/redis.config';
       inject: [ConfigService<IsRedisConfig, true>],
     }),
 
-    // setup Queue
+    // setup Test Queue
     BullModule.registerQueue({
       name: 'Test',
     }),
