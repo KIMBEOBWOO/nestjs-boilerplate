@@ -3,6 +3,11 @@ import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { IsRedisConfig } from '../config/interfaces/redis.config';
 
+/**
+ * BullQueueModule
+ * - Global module that provides the bull redis queue.
+ * - An example queue is currently inserted and can be added to the "import" item via "registerQueue" if necessary.
+ */
 @Global()
 @Module({
   imports: [

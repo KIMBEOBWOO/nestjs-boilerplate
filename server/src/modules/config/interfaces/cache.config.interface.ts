@@ -1,4 +1,4 @@
 export interface IsCacheConfig {
-  cacheHost: string;
-  cachePort: number;
+  readonly cacheHost: string;
+  readonly cachePort: number;
 }

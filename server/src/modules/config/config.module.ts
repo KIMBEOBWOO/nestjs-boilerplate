@@ -6,8 +6,8 @@ import configuration from './configuration';
 
 /**
  * Server Configuration Module
- * @description Module that provides environment variables for the server.
- * The module is set as a global module to allow injection globally.
+ * - Module that provides environment variables for the server.
+ * - The module is set as a global module to allow injection globally.
  */
 @Global()
 @Module({
@@ -22,6 +22,7 @@ import configuration from './configuration';
           .required(),
         SERVER_PORT: Joi.number().required(),
       }),
+      // loading configuration
       load: [configuration],
     }),
   ],

@@ -5,6 +5,11 @@ import { IsPostgresDatabaseConfig } from '../config/interfaces/postgres-database
 import { Post } from '../post/entities/post.entity';
 import { POSTGRES_CONNECTION } from './const/postgres-connection.const';
 
+/**
+ * Database Module
+ * - The module is a global module that provides the TypeORM database.
+ * - If additional database connections are required, "forRootAsync" can be added to the "import" array.
+ */
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({

@@ -3,9 +3,16 @@ import { IsCacheConfig } from './interfaces/cache.config.interface';
 import { IsPostgresDatabaseConfig } from './interfaces/postgres-database.config.interface';
 import { IsRedisConfig } from './interfaces/redis.config';
 
+/**
+ * Perform validation of environment variable objects with a given interface.
+ */
 export default () => {
   // joi validation target schema
   const schema = Joi.object<
+    /**
+     * If additional environment variables are required,
+     * configure the appropriate interface and add it to the union type.
+     */
     IsPostgresDatabaseConfig & IsCacheConfig & IsRedisConfig,
     true
   >({

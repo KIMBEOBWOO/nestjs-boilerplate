@@ -5,6 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { Queue } from 'bull';
 import { AppModule } from './app.module';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,6 +24,20 @@ async function bootstrap() {
   });
 
   app.use('/bull-board', serverAdapter.getRouter());
+
+  /*******************************************************
+   * @name SET_UP_BULL_BOARD
+   *******************************************************/
+
+  const config = new DocumentBuilder()
+    .setTitle('Nest.js Boilerplate')
+    .setDescription('@KIMBEOBWOO Nestjs REST API boilerplate')
+    .setVersion('1.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
   /*******************************************************/
 
   await app.listen(process.env.SERVER_PORT || 3000);
