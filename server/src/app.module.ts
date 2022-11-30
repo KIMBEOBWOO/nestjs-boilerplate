@@ -10,7 +10,6 @@ import { QueueModule } from './modules/queue/queue.module';
     ServerConfigModule,
     ServerCacheModule,
     QueueModule,
-
     DatabaseModule,
     PostModule,
   ],
