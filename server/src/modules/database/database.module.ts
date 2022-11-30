@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IsPostgresDatabaseConfig } from '../config/interfaces/postgres-database.config.interface';
-import { Post } from '../post/entities/post.entity';
 import { POSTGRES_CONNECTION } from './const/postgres-connection.const';
 
 /**
@@ -26,7 +25,8 @@ import { POSTGRES_CONNECTION } from './const/postgres-connection.const';
         database: configService.get('postgresDatabaseName'),
         synchronize: false,
         keepConnectionAlive: true,
-        entities: [Post],
+        // Entity file path (always consider dockerfile)
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
       }),
     }),
   ],
