@@ -22,6 +22,7 @@ import configuration from './configuration';
           .required(),
         SERVER_PORT: Joi.number().required(),
       }),
+      // loading configuration
       load: [configuration],
     }),
   ],
