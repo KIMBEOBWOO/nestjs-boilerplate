@@ -43,7 +43,7 @@ services:
   # Local PostgreSQL database container
   db-postgres:
     container_name: db-postgres
-    image: postgres:latest
+    image: postgres:12
     ports:
       - 5432:5432
     environment:

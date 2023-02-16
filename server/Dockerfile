@@ -6,7 +6,7 @@ FROM node:18-alpine As development
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node package*.json ./
+COPY --chown=node:node package*.json yarn*.lock ./
 
 RUN npm install -g @nestjs/cli
 RUN yarn ci
