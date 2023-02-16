@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Queue } from 'bull';
 import { AppModule } from './app.module';
+import { WsAdapter } from '@nestjs/platform-ws';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
@@ -37,6 +38,8 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.useWebSocketAdapter(new WsAdapter());
 
   /*******************************************************/
 
