@@ -11,7 +11,10 @@ services:
       target: development
     volumes:
       - ./server:/usr/src/app
+      # Remove node_modules and dist from the bind mount path. 
+      # If included in a development environment, the --watch mode may slow down.
       - /usr/src/app/node_modules
+      - /usr/src/app/dist
     command: yarn start:dev
     environment:
       - SERVER_PORT=3000
