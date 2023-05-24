@@ -26,7 +26,7 @@ import { POSTGRES_CONNECTION } from './const/postgres-connection.const';
         synchronize: false,
         keepConnectionAlive: true,
         // Entity file path (always consider dockerfile)
-        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+        entities: ['dist/**/*.entity{.ts,.js}'],
       }),
     }),
   ],

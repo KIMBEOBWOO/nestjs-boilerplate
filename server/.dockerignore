@@ -12,7 +12,7 @@ coverage
 .editorconfig
 Dockerfile
 README.md
-tslint.json
-nodemon.json
 /files
 /.data
+tslint.json
+nodemon.json

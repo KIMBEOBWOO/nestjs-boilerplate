@@ -1,24 +1,14 @@
 version: '3.7'
 
 services:
-  # Nest.js Server container
+  # Groomer Note Talk Server
   nestjs-app:
     container_name: nestjs-app
     restart: always
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-      target: development
-    volumes:
-      - ./server:/usr/src/app
-      # Remove node_modules and dist from the bind mount path. 
-      # If included in a development environment, the --watch mode may slow down.
-      - /usr/src/app/node_modules
-      - /usr/src/app/dist
-    command: yarn start:dev
+    image: kimbeobwoo/nestjs-boilerplate:1.0.0
     environment:
+      - NODE_ENV=production
       - SERVER_PORT=3000
-      - NODE_ENV=development
     ports:
       - 3000:3000
     expose:
@@ -29,7 +19,7 @@ services:
     networks:
       - network-backend
 
-  # Reverse Proxy Production version container
+  # Reverse Proxy Production version container 
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -44,6 +34,8 @@ services:
       - network-backend
 
   # Local PostgreSQL database container
+  # Production database for testing. In the production environment, 
+  # you must remove it from the corresponding docker-compose.prod.yml file.
   db-postgres:
     container_name: db-postgres
     image: postgres:12
@@ -58,6 +50,8 @@ services:
       - network-backend
 
   # Local Redis container
+  # Production redis for testing. In the production environment, 
+  # you must remove it from the corresponding docker-compose.prod.yml file.
   redis:
     container_name: redis
     image: redis:latest
