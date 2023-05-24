@@ -10,15 +10,15 @@ From the configuration items below, you can see what parts will be added in the 
 
 ## **Configuration**
 
-- [x]  Config Service ([@nestjs/config](https://docs.nestjs.com/techniques/configuration))
-- [x]  [MessageQueue](https://docs.nestjs.com/techniques/queues)
-- [x]  Docker
-- [x]  [Database (typeorm)](https://docs.nestjs.com/techniques/database)
-- [ ]  Swagger
-- [ ]  i18
-- [ ]  e2e Test
-- [ ]  git action
-- [ ]  API versioning
+- [x] Config Service ([@nestjs/config](https://docs.nestjs.com/techniques/configuration))
+- [x] [MessageQueue](https://docs.nestjs.com/techniques/queues)
+- [x] Docker
+- [x] [Database (typeorm)](https://docs.nestjs.com/techniques/database)
+- [ ] Swagger
+- [ ] i18
+- [ ] e2e Test
+- [ ] git action
+- [ ] API versioning
 
 ## Set up
 
@@ -49,7 +49,7 @@ docker-compose -f docker-compose.dev.yml up db-postgres --build -d
 cat ./server/envs/.env.development
 
 # init varaibles /server/envs/.env.development
-# Set the database connection related environment variables 
+# Set the database connection related environment variables
 # and the redox connection environment variables.
 POSTGRES_HOST=db-postgres
 POSTGRES_PORT=5432
@@ -89,8 +89,8 @@ docker logs -f nestjs-app
 ```bash
 source ./migration.generate.sh \
 dev \
-src/modules/database/data-sources/postgres.datasource.ts \
-./src/modules/database/migrations/{migration_file_name}
+src/database/data-sources/postgres.datasource.ts \
+./src/database/migrations/{migration_file_name}
 ```
 
 The first parameter should provide an environment to which migration will be applied, select `dev` or `prod`.
@@ -102,9 +102,9 @@ The third parameter provides the path through which the migration file will be c
 ### run migration (TypeORM)
 
 ```bash
-source ./migration.run.sh 
+source ./migration.run.sh \
 dev \
-./src/modules/database/data-sources/postgres.datasource.ts
+./src/database/data-sources/postgres.datasource.ts
 ```
 
 same as above
