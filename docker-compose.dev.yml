@@ -1,34 +1,6 @@
 version: '3.7'
 
 services:
-  # Nest.js Server container
-  nestjs-app:
-    container_name: nestjs-app
-    restart: always
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-      target: development
-    volumes:
-      - ./server:/usr/src/app
-      # Remove node_modules and dist from the bind mount path. 
-      # If included in a development environment, the --watch mode may slow down.
-      - /usr/src/app/node_modules
-      - /usr/src/app/dist
-    command: yarn start:dev
-    environment:
-      - SERVER_PORT=3000
-      - NODE_ENV=development
-    ports:
-      - 3000:3000
-    expose:
-      - 3000
-    depends_on:
-      - db-postgres
-      - redis
-    networks:
-      - network-backend
-
   # Reverse Proxy Production version container
   nginx:
     image: nginx:latest
@@ -36,8 +8,6 @@ services:
     ports:
       - "80:80"
     restart: "unless-stopped"
-    depends_on:
-      - nestjs-app
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
