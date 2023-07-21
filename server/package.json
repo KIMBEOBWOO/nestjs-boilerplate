@@ -38,7 +38,7 @@
     "@nestjs/swagger": "^6.3.0",
     "@nestjs/typeorm": "^9.0.1",
     "@nestjs/websockets": "^9.4.3",
-    "@toss/nestjs-aop": "toss/nestjs-aop",
+    "@toss/nestjs-aop": "^2.0.3",
     "bull": "^4.10.4",
     "cache-manager": "^5.2.3",
     "cache-manager-redis-store": "^3.0.1",
