@@ -6,6 +6,7 @@ import { QueueModule } from './queue/queue.module';
 import { AopModule } from '@toss/nestjs-aop';
 import { TransactionModule } from 'typeorm-aop-transaction';
 import { POSTGRES_CONNECTION } from './database/const/postgres-connection.const';
+import { EventEmitterModule } from './event-emitter/event-emitter.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { POSTGRES_CONNECTION } from './database/const/postgres-connection.const'
     ServerCacheModule,
     QueueModule,
     DatabaseModule,
+    EventEmitterModule,
   ],
   controllers: [],
   providers: [],
